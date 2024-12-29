@@ -8,10 +8,6 @@ window.geometry('800x600')
 current_player = "X"
 buttons = []
 
-X_player_wins = 0
-O_player_wins = 0
-
-
 
 def check_winner():
     for i in range(3):

@@ -38,5 +38,13 @@ def on_click_mouse(row, col):
 
     current_player = "0" if current_player == "X" else "X"
 
+for i in range(3):
+    row = []
+    for j in range(3):
+        button = tk.Button(window, text="", font=("Arial", 20), height=2, width=4,
+                           command=lambda r=i, c=j: on_click_mouse(r, c))
+        button.grid(row=i, column=j)
+        row.append(button)
+    buttons.append(row)
 
 window.mainloop()

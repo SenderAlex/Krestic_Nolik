@@ -38,6 +38,7 @@ def check_draw():
 
 def on_click_mouse(row, col):
     global current_player, X_player_wins, O_player_wins
+    select_button.config(state=tk.DISABLED)
 
     if buttons[row][col]['text'] != "":  # проверка на то, чтобы не перезаписывалась ячейка, т.е.
         # поверх крестика или нолика не записывалось еще что-то
@@ -96,8 +97,16 @@ def choosing_x_or_0():
     def submit():
         global current_player
         current_player = entry.get().upper()
+
         if current_player == "Х":
             current_player = current_player.replace("Х", "X")
+
+        if current_player == "O":  # это английское "O"
+            current_player = current_player.replace("O", "0")
+
+        if current_player == "О":  # это русское "О"
+            current_player = current_player.replace("О", "0")
+
         if current_player.upper() == "X" or current_player == "0":
             messagebox.showinfo('Выбор игрока', f'Вы выбрали {current_player}')
             select_button.config(state=tk.DISABLED)

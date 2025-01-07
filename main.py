@@ -94,11 +94,13 @@ def choosing_x_or_0():
 
     def submit():
         global current_player
-        current_player = entry.get()
-        if current_player == "X" or current_player == "0":
+        current_player = entry.get().upper()
+        if current_player == "Х":
+            current_player = current_player.replace("Х", "X")
+        if current_player.upper() == "X" or current_player == "0":
             messagebox.showinfo('Выбор игрока', f'Вы выбрали {current_player}')
         else:
-            messagebox.showinfo('Выбор игрока', f'Ошибка!! Выдолжны выбрать либо "X" либо "0"')
+            messagebox.showinfo('Выбор игрока', f'Ошибка!! Вы должны выбрать либо "X" либо "0"')
         dialog.destroy()
 
     button_frame = tk.Frame(dialog)  # чтобы кнопки ok_button и cancel_button были по середине окна

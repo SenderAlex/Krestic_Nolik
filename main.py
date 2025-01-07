@@ -75,6 +75,7 @@ def reset_game():
     O_player_wins = 0
     current_player = "X"
     clear_button()
+    select_button.config(state=tk.NORMAL)
 
 
 def clear_button():
@@ -99,6 +100,7 @@ def choosing_x_or_0():
             current_player = current_player.replace("Х", "X")
         if current_player.upper() == "X" or current_player == "0":
             messagebox.showinfo('Выбор игрока', f'Вы выбрали {current_player}')
+            select_button.config(state=tk.DISABLED)
         else:
             messagebox.showinfo('Выбор игрока', f'Ошибка!! Вы должны выбрать либо "X" либо "0"')
         dialog.destroy()
@@ -121,26 +123,27 @@ for i in range(3):
         row.append(button)
     buttons.append(row)
 
+
+def update_score():
+    score.config(text=f'СЧЕТ\n Крестик Нолик\n{X_player_wins}:{O_player_wins}')
+
+
+def clear_score():
+    reset_game()
+    score.config(text=f'СЧЕТ\n Крестик Нолик\n{X_player_wins}:{O_player_wins}')
+
+
 reset_button = tk.Button(text="Сброс", height=2, width=8, font=('Arial', 11, 'bold italic'), bg="lightgray",
-                         fg="purple", command=clear_button)
+                         fg="purple", command=clear_score)
 reset_button.grid(row=0, column=4, padx=50)
 
 select_button = tk.Button(text="Выбери 'X' или '0' ", height=2, width=15, font=('Arial', 11, 'bold italic'),
                           bg="lightgray", fg="purple", command=choosing_x_or_0)
 select_button.grid(row=1, column=4, padx=50)
 
-
 score = tk.Button(text=f"СЧЕТ\n Крестик Нолик\n{X_player_wins}:{O_player_wins}",
                   height=4, width=15, font=('Arial', 11, 'bold italic'), bg="lightgray", fg="purple")
 score.grid(row=2, column=4)
-
-
-def update_score():
-    score.config(text=f'СЧЕТ\n Крестик Нолик\n{X_player_wins}:{O_player_wins}')
-
-def clear_score():
-    reset_game()
-    score.config(text=f'СЧЕТ\n Крестик Нолик\n{X_player_wins}:{O_player_wins}')
 
 
 window.mainloop()
